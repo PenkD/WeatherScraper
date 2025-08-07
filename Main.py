@@ -35,7 +35,7 @@ options.add_argument("--window-size=1920,1080")
 driver = webdriver.Chrome(service=service, options=options)
 driver.get("https://www.theweathernetwork.com/en")
 action = ActionChains(driver)
-WebDriverWait(driver, 5).until(
+WebDriverWait(driver, 30).until(
     EC.presence_of_element_located(
         (By.CSS_SELECTOR, '[data-testid="location-card"]')
     )
@@ -51,8 +51,14 @@ input_element = driver.find_element(By.CSS_SELECTOR, '[data-testid="location-car
 
 
 action.click(input_element).perform()
+WebDriverWait(driver, 30).until(
+    EC.presence_of_element_located(
+        (By.CSS_SELECTOR, '[data-testid="temperature-text"]')
+    )
+)
 
-sleep(5)
+
+
 
 weather = driver.find_element(By.CSS_SELECTOR, '[data-testid="temperature-text"]')
 
