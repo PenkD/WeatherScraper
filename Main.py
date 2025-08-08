@@ -29,9 +29,9 @@ entry.configure(state="readonly")
 
 service = Service(executable_path="chromedriver.exe")
 options = Options()
-options.add_argument("--headless=new")
-options.add_argument("--disable-gpu")
-options.add_argument("--window-size=1920,1080")
+options.add_argument("--headless=new")   # comment out these 3 lines to make Chrome visible
+options.add_argument("--disable-gpu")    # comment out these 3 lines to make Chrome visible
+options.add_argument("--window-size=1920,1080")    # comment out these 3 lines to make Chrome visible
 driver = webdriver.Chrome(service=service, options=options)
 driver.get("https://www.theweathernetwork.com/en")
 action = ActionChains(driver)
@@ -69,3 +69,4 @@ entry.delete(0, "end")
 entry.insert(tk.END, "The weather is " + weather.text + "°")
 entry.configure(state="readonly")
 root.mainloop()
+
